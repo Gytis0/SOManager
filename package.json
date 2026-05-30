@@ -1,0 +1,20 @@
+{
+  "name": "com.gytis0.somanager",
+  "version": "1.0.0",
+  "displayName": "SO Manager",
+  "description": "Editor window for managing Scriptable Objects.",
+  "unity": "6000.1",
+  "unityRelease": "3f1",
+  "keywords": [
+    "somanager",
+    "scriptableobjectsmanager",
+    "so",
+    "manager",
+    "gytismanager"
+  ],
+  "author": {
+    "name": "Gytis",
+    "email": "gytiskupcinskas0@gmail.com",
+    "url": "https://www.unity3d.com"
+  }
+}
