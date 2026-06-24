@@ -1,11 +1,11 @@
 {
     "name": "com.gytis0.somanager.Editor",
     "rootNamespace": "",
-    "references": [],
-    "includePlatforms": [],
-    "excludePlatforms": [
-        "Editor"
+    "references": [
+        "GUID:f80714a31723e844aa8a0f980b59e0b4"
     ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
