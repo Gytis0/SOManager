@@ -7,6 +7,10 @@ namespace SOManager.EditorTools
 {
 	public static class RegistryBuilder
 	{
+		/// <summary>
+		/// Builds a registry file with all of the items inside of it. The registry file is used at runtime to initialize all data.
+		/// </summary>
+		/// <param name="outputPath"></param>
 		public static void Build(string outputPath)
 		{
 			outputPath.EnsureFolder();

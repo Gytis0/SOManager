@@ -5,7 +5,7 @@ namespace SOManager.Runtime
 {
 	public class Registry : ScriptableObject
 	{
-		[SerializeField, HideInInspector] private List<GameDataSO> entries = new();
+		[SerializeField] private List<GameDataSO> entries = new();
 
 		public List<GameDataSO> Entries => entries;
 	}

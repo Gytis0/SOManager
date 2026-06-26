@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [assembly: InternalsVisibleTo("com.gytis0.somanager.Editor")]
-public abstract class GameDataSO : ScriptableObject
+public abstract class GameDataSO : ScriptableObject, IGameDataSO
 {
 	[SerializeField, HideInInspector] private string guid;
 	[SerializeField, HideInInspector] private string enumName;
@@ -15,6 +15,7 @@ public abstract class GameDataSO : ScriptableObject
 	public bool IsDeleted => isDeleted;
 
 	public string Name;
+	public Sprite Icon;
 
 	public abstract bool IsValid();
 
