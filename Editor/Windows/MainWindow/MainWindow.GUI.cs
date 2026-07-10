@@ -129,7 +129,7 @@ namespace Gytis0.SOManager.Editor.Windows
 		private void DrawInspectorPanel()
 		{
 			Vector2 mousePos = default;
-			bool isClicked = false;
+			bool isClicked;
 			if (Event.current.type == EventType.MouseDown)
 			{
 				mousePos = Event.current.mousePosition;
@@ -480,7 +480,7 @@ namespace Gytis0.SOManager.Editor.Windows
 						isCreatingAsset = false;
 
 						DestroyImmediate(inspector);
-						DestroyImmediate(createdAsset);
+						DestroyImmediate(createdAsset, true);
 
 						createdAsset = null;
 
@@ -512,7 +512,7 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			createdAsset = CreateInstance(selectedType) as GameDataSO;
 			createdAsset.GenerateGuid();
-			createdAsset.Icon = ResourcesHelper.sprite_DefaultItemIcon;
+			createdAsset.SetIcon(ResourcesHelper.sprite_DefaultItemIcon);
 
 			isCreatingAsset = true;
 			inspector = UnityEditor.Editor.CreateEditor(createdAsset);

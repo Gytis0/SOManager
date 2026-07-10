@@ -8,14 +8,16 @@ public abstract class GameDataSO : ScriptableObject, IGameDataSO
 	[SerializeField] private string enumName;
 	[SerializeField, HideInInspector] private int enumId;
 	[SerializeField, HideInInspector] private bool isDeleted;
+	[SerializeField] private string displayName;
+	[SerializeField] private Sprite icon;
 
 	public string Guid => guid;
 	public string EnumName => enumName;
 	public int EnumId => enumId;
 	public bool IsDeleted => isDeleted;
 
-	public string Name;
-	public Sprite Icon;
+	public string Name => displayName;
+	public Sprite Icon => icon;
 
 	/// <summary>
 	/// Checks whether this asset is valid.
@@ -49,6 +51,16 @@ public abstract class GameDataSO : ScriptableObject, IGameDataSO
 	internal void SetSoftDeleted(bool value)
 	{
 		isDeleted = value;
+	}
+
+	internal void SetName(string value)
+	{
+		displayName = value;
+	}
+
+	internal void SetIcon(Sprite icon)
+	{
+		this.icon = icon;
 	}
 
 	#endregion

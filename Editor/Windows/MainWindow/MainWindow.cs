@@ -107,7 +107,7 @@ namespace Gytis0.SOManager.Editor.Windows
 		private void GenerateEnums()
 		{
 			foreach (Type type in cachedTypes)
-				EnumGenerator.Generate(type, cachedSettings.GeneratedFilesPath);
+				EnumGenerator.Generate(type, cachedSettings.EnumsFilesPath);
 
 			AssetDatabase.Refresh();
 		}

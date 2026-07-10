@@ -7,6 +7,6 @@ namespace Gytis0.SOManager.Editor.Settings
 		public string ResourcesPath = "Assets/Resources/SOManager";
 		public string RootPath = "Assets/SOManager";
 		public string DataPath = "Assets/SOManager/Data";
-		public string GeneratedFilesPath = "Assets/SOManager/Generated";
+		public string EnumsFilesPath = "Assets/SOManager/Enums";
 	}
 }

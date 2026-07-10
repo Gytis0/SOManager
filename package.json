@@ -14,7 +14,8 @@
   ],
   "author": {
     "name": "Gytis Kupcinskas",
-    "email": "gytiskupcinskas0@gmail.com",
-    "url": "https://github.com/Gytis0/SOManager"
-  }
+    "url": "https://github.com/Gytis0/SOManager",
+    "email": "gytiskupcinskas0@gmail.com"
+  },
+  "documentationUrl": "https://github.com/Gytis0/SOManager/wiki"
 }

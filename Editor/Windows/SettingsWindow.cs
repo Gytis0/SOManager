@@ -40,7 +40,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			EditorGUILayout.Space();
 
 			EditorGUILayout.PropertyField(serializedSettings.FindProperty(nameof(GameDataSettings.DataPath)));
-			EditorGUILayout.PropertyField(serializedSettings.FindProperty(nameof(GameDataSettings.GeneratedFilesPath)));
+			EditorGUILayout.PropertyField(serializedSettings.FindProperty(nameof(GameDataSettings.EnumsFilesPath)));
 			EditorGUILayout.PropertyField(serializedSettings.FindProperty(nameof(GameDataSettings.ResourcesPath)));
 
 			EditorGUILayout.Space();
