@@ -1,9 +1,10 @@
-using SOManager.Runtime;
+using Gytis0.SOManager.Editor.Helpers;
+using Gytis0.SOManager.Runtime;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace SOManager.EditorTools
+namespace Gytis0.SOManager.Editor
 {
 	public static class RegistryBuilder
 	{

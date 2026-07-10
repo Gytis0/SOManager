@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -35,5 +36,15 @@ public static class EditorHelper
 		clicked = GUILayout.Toggle(clicked, text, style, options);
 		GUI.backgroundColor = old;
 		return clicked;
+	}
+
+	public static bool Toggle(bool value, string label, Action onChanged, params GUILayoutOption[] options)
+	{
+		bool newValue = GUILayout.Toggle(value, label, options);
+
+		if (newValue != value)
+			onChanged?.Invoke();
+
+		return newValue;
 	}
 }

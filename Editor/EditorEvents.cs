@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class EditorEvents : MonoBehaviour
 {
-	public static event Action AssetsChanged;
+	public static event Action OnAssetsChanged;
 
 	public static void RaiseAssetsChanged()
 	{
-		AssetsChanged?.Invoke();
+		OnAssetsChanged?.Invoke();
 	}
 }

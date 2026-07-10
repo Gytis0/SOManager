@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 
-namespace SOManager.EditorTools
+namespace Gytis0.SOManager.Editor.Helpers
 {
 	public static class TypeHelper
 	{

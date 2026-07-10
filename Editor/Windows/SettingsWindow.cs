@@ -1,9 +1,11 @@
+using Gytis0.SOManager.Editor.Helpers;
+using Gytis0.SOManager.Editor.Settings;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace SOManager.EditorTools
+namespace Gytis0.SOManager.Editor.Windows
 {
 	public class GameDataSettingsWindow : EditorWindow
 	{
@@ -11,7 +13,7 @@ namespace SOManager.EditorTools
 		private GameDataSettings settings;
 		private int buttonWidth = 150;
 
-		[MenuItem("Tools/SOManager Settings")]
+		[MenuItem("Tools/SOManager/Settings", priority = 11)]
 		public static void Open()
 		{
 			GetWindow<GameDataSettingsWindow>("SO Manager Settings");

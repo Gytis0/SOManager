@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a260e41554fac5a4abf2f0f11fac193b
+guid: 781b03534c39fb546abadf2a0cffca4e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5615589531769140058
-    second: FilterAssets_0
+      213: -5769542731520458071
+    second: circle-question-mark_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FilterAssets_0
+      name: circle-question-mark_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 24
-        height: 23
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a53708d2de49eed40800000000000000
-      internalID: 5615589531769140058
+      spriteID: 9a2494b34777eefa0800000000000000
+      internalID: -5769542731520458071
       vertices: []
       indices: 
       edges: []

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SOManager.EditorTools
+namespace Gytis0.SOManager.Editor.Settings
 {
 	public class GameDataSettings : ScriptableObject
 	{

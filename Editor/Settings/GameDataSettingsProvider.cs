@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SOManager.EditorTools
+namespace Gytis0.SOManager.Editor.Settings
 {
 	public static class GameDataSettingsProvider
 	{

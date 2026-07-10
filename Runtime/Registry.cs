@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SOManager.Runtime
+namespace Gytis0.SOManager.Runtime
 {
 	public class Registry : ScriptableObject
 	{

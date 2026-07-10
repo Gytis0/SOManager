@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 12bdf330cf6b833499caeeea8ee5076d
+guid: 18f94f91223a8494dba8c730ca3f39ba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6513116673031861273
-    second: funnel-x_0
-  - first:
-      213: -2707574369950127680
-    second: funnel-x_1
+      213: 7448600909176445659
+    second: file-x-corner-grey_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: funnel-x_0
+      name: file-x-corner-grey_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 17
-        height: 23
+        width: 20
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7eb0343d4e2cc95a0800000000000000
-      internalID: -6513116673031861273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: funnel-x_1
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 13
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c9ab24b473cc6ad0800000000000000
-      internalID: -2707574369950127680
+      spriteID: bda1d11001fbe5760800000000000000
+      internalID: 7448600909176445659
       vertices: []
       indices: 
       edges: []

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class GameDataSO : ScriptableObject, IGameDataSO
 {
 	[SerializeField, HideInInspector] private string guid;
-	[SerializeField, HideInInspector] private string enumName;
+	[SerializeField] private string enumName;
 	[SerializeField, HideInInspector] private int enumId;
 	[SerializeField, HideInInspector] private bool isDeleted;
 
@@ -17,7 +17,17 @@ public abstract class GameDataSO : ScriptableObject, IGameDataSO
 	public string Name;
 	public Sprite Icon;
 
-	public abstract bool IsValid();
+	/// <summary>
+	/// Checks whether this asset is valid.
+	/// </summary>
+	/// <remarks>
+	/// By default it always returns true. If you want to use the validation, override this method.
+	/// </remarks>
+	/// <returns><see langword="true"/> if valid. Otherwise, <see langword="false"/></returns>
+	public virtual bool IsValid()
+	{
+		return true;
+	}
 
 	#region Internal
 
