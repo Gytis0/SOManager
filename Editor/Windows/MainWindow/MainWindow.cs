@@ -15,10 +15,6 @@ namespace Gytis0.SOManager.Editor.Windows
 		private GameDataSO createdAsset;
 		private readonly Dictionary<GameDataSO, GameDataSO> tempAssets = new();
 
-		private const string TypeRatioKey = "Gytis0.SOManager.TypePanelRatio";
-		private const string AssetRatioKey = "Gytis0.SOManager.AssetPanelRatio";
-		private const string InspectorRatioKey = "Gytis0.SOManager.InspectorPanelRatio";
-
 		[SerializeField] private bool isCreatingAsset = false;
 		[SerializeField] private bool isListView = true;
 		[SerializeField] private string selectedTypeName;
@@ -39,6 +35,8 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			EditorEvents.OnAssetsChanged += EditorEvents_AssetsChanged;
 			AssetController.OnDeleteChanged += AssetController_OnDeleteChanged;
+
+			position = new Rect(position.x, position.y, WindowWidth, WindowHeight);
 		}
 
 		private void OnDisable()
@@ -57,16 +55,20 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private void SaveEditorPrefs()
 		{
-			EditorPrefs.SetFloat(TypeRatioKey, TypePanelRatio);
-			EditorPrefs.SetFloat(AssetRatioKey, AssetPanelRatio);
-			EditorPrefs.SetFloat(InspectorRatioKey, InspectorPanelRatio);
+			EditorPrefs.SetFloat(TypeRatio_Key, TypePanelRatio);
+			EditorPrefs.SetFloat(AssetRatio_Key, AssetPanelRatio);
+			EditorPrefs.SetFloat(InspectorRatio_Key, InspectorPanelRatio);
+			EditorPrefs.SetFloat(WindowWidth_Key, WindowWidth);
+			EditorPrefs.SetFloat(WindowHeight_Key, WindowHeight);
 		}
 
 		private void LoadEditorPrefs()
 		{
-			TypePanelRatio = EditorPrefs.GetFloat(TypeRatioKey, TypePanelRatio_Default);
-			AssetPanelRatio = EditorPrefs.GetFloat(AssetRatioKey, AssetPanelRatio_Default);
-			InspectorPanelRatio = EditorPrefs.GetFloat(InspectorRatioKey, InspectorPanelRatio_Default);
+			TypePanelRatio = EditorPrefs.GetFloat(TypeRatio_Key, TypePanelRatio_Default);
+			AssetPanelRatio = EditorPrefs.GetFloat(AssetRatio_Key, AssetPanelRatio_Default);
+			InspectorPanelRatio = EditorPrefs.GetFloat(InspectorRatio_Key, InspectorPanelRatio_Default);
+			WindowHeight = EditorPrefs.GetFloat(WindowWidth_Key, WindowWidth_Default);
+			WindowHeight = EditorPrefs.GetFloat(WindowHeight_Key, WindowHeight_Default);
 		}
 
 		private void OnGUI()

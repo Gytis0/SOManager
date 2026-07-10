@@ -37,10 +37,20 @@ namespace Gytis0.SOManager.Editor.Windows
 		private const float TypePanelRatio_Default = 0.20f;
 		private const float AssetPanelRatio_Default = 0.40f;
 		private const float InspectorPanelRatio_Default = 0.40f;
+		private const float WindowWidth_Default = 900f;
+		private const float WindowHeight_Default = 600f;
 
 		[SerializeField] private float TypePanelRatio;
 		[SerializeField] private float AssetPanelRatio;
 		[SerializeField] private float InspectorPanelRatio;
+		[SerializeField] private float WindowWidth;
+		[SerializeField] private float WindowHeight;
+
+		private const string TypeRatio_Key = "Gytis0.SOManager.TypePanelRatio";
+		private const string AssetRatio_Key = "Gytis0.SOManager.AssetPanelRatio";
+		private const string InspectorRatio_Key = "Gytis0.SOManager.InspectorPanelRatio";
+		private const string WindowWidth_Key = "Gytis0.SOManager.WindowWidth";
+		private const string WindowHeight_Key = "Gytis0.SOManager.WindowHeight";
 
 		private const float HandleWidth = 8f;
 		private int activeResizeHandle = -1;
