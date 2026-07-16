@@ -1,4 +1,4 @@
-using System.Diagnostics.Tracing;
+using Gytis0.SOManager.Editor.Extensions;
 using UnityEditor;
 using UnityEngine;
 
@@ -178,7 +178,7 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private bool IsInLastRow(int index, int columnCount, int itemCount)
 		{
-			int firstIndexInLastRow = ((itemCount - 1) / columnCount) * columnCount;
+			int firstIndexInLastRow = (itemCount - 1) / columnCount * columnCount;
 			return index >= firstIndexInLastRow;
 		}
 

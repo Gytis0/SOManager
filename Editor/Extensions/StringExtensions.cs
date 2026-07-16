@@ -3,53 +3,56 @@ using System.IO;
 using System.Text;
 using UnityEditor;
 
-public static class StringExtensions
+namespace Gytis0.SOManager.Editor.Extensions
 {
-	public static string ToPascalCase(this string value)
+	public static class StringExtensions
 	{
-		if (string.IsNullOrWhiteSpace(value))
-			return string.Empty;
-
-		StringBuilder sb = new();
-
-		string[] parts = value.Split(new[] { ' ', '_', '-' }, StringSplitOptions.RemoveEmptyEntries);
-
-		foreach (string part in parts)
+		public static string ToPascalCase(this string value)
 		{
-			if (part.Length == 0)
-				continue;
+			if (string.IsNullOrWhiteSpace(value))
+				return string.Empty;
 
-			sb.Append(char.ToUpperInvariant(part[0]));
+			StringBuilder sb = new();
 
-			if (part.Length > 1)
-				sb.Append(part.Substring(1));
+			string[] parts = value.Split(new[] { ' ', '_', '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (string part in parts)
+			{
+				if (part.Length == 0)
+					continue;
+
+				sb.Append(char.ToUpperInvariant(part[0]));
+
+				if (part.Length > 1)
+					sb.Append(part.Substring(1));
+			}
+
+			return sb.ToString();
 		}
 
-		return sb.ToString();
-	}
-
-	public static void EnsureFolder(this string path)
-	{
-		path = path.Replace('\\', '/');
-
-		if (Path.HasExtension(path))
-			path = Path.GetDirectoryName(path)?.Replace('\\', '/');
-
-		if (string.IsNullOrEmpty(path))
-			return;
-
-		string[] parts = path.Split('/');
-
-		string current = parts[0];
-
-		for (int i = 1; i < parts.Length; i++)
+		public static void EnsureFolder(this string path)
 		{
-			string next = string.Format("{0}/{1}", current, parts[i]);
+			path = path.Replace('\\', '/');
 
-			if (!AssetDatabase.IsValidFolder(next))
-				AssetDatabase.CreateFolder(current, parts[i]);
+			if (Path.HasExtension(path))
+				path = Path.GetDirectoryName(path)?.Replace('\\', '/');
 
-			current = next;
+			if (string.IsNullOrEmpty(path))
+				return;
+
+			string[] parts = path.Split('/');
+
+			string current = parts[0];
+
+			for (int i = 1; i < parts.Length; i++)
+			{
+				string next = string.Format("{0}/{1}", current, parts[i]);
+
+				if (!AssetDatabase.IsValidFolder(next))
+					AssetDatabase.CreateFolder(current, parts[i]);
+
+				current = next;
+			}
 		}
 	}
 }

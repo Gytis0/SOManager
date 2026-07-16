@@ -1,6 +1,9 @@
-public enum IncludeDeleted
+namespace Gytis0.SOManager.Editor.Enums
 {
-    NotDeleted,
-    Deleted,
-    Both
+	public enum IncludeDeleted
+	{
+		NotDeleted,
+		Deleted,
+		Both
+	}
 }

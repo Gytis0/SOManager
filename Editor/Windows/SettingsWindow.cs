@@ -1,5 +1,9 @@
+using Gytis0.SOManager.Editor.Enums;
+using Gytis0.SOManager.Editor.Events;
+using Gytis0.SOManager.Editor.Extensions;
 using Gytis0.SOManager.Editor.Helpers;
 using Gytis0.SOManager.Editor.Settings;
+using Gytis0.SOManager.Runtime;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,7 +15,7 @@ namespace Gytis0.SOManager.Editor.Windows
 	{
 		private SerializedObject serializedSettings;
 		private GameDataSettings settings;
-		private int buttonWidth = 150;
+		private readonly int buttonWidth = 150;
 
 		[MenuItem("Tools/SOManager/Settings", priority = 11)]
 		public static void Open()

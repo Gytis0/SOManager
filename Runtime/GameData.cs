@@ -61,7 +61,7 @@ namespace Gytis0.SOManager.Runtime
 		/// <param name="id">Id of the item.</param>
 		/// <returns>The item, if found. Otherwise, <see langword="null"/>.</returns>
 		/// <exception cref="Exception"></exception>
-		public static T Get<T>(Enum id) 
+		public static T Get<T>(Enum id)
 			where T : GameDataSO
 		{
 			if (!Initialized)

@@ -1,41 +1,46 @@
+using Gytis0.SOManager.Editor.Enums;
+using Gytis0.SOManager.Runtime;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 
-public static class TypeExtensions
+namespace Gytis0.SOManager.Editor.Extensions
 {
-	/// <summary>
-	/// Gets existing assets.
-	/// </summary>
-	/// <param name="type">Type of the asset.</param>
-	/// <param name="includeDeleted">Wheteher to include deleted or not.</param>
-	/// <returns>A list of <see cref="GameDataSO>"/>.</returns>
-	public static List<GameDataSO> GetAssets(this Type type, IncludeDeleted includeDeleted = IncludeDeleted.NotDeleted)
+	public static class TypeExtensions
 	{
-		List<GameDataSO> result = new();
-
-		string[] guids = AssetDatabase.FindAssets($"t:{type.Name}");
-
-		foreach (string guid in guids)
+		/// <summary>
+		/// Gets existing assets.
+		/// </summary>
+		/// <param name="type">Type of the asset.</param>
+		/// <param name="includeDeleted">Wheteher to include deleted or not.</param>
+		/// <returns>A list of <see cref="GameDataSO>"/>.</returns>
+		public static List<GameDataSO> GetAssets(this Type type, IncludeDeleted includeDeleted = IncludeDeleted.NotDeleted)
 		{
-			string path = AssetDatabase.GUIDToAssetPath(guid);
+			List<GameDataSO> result = new();
 
-			GameDataSO asset = AssetDatabase.LoadAssetAtPath(path, type) as GameDataSO;
+			string[] guids = AssetDatabase.FindAssets($"t:{type.Name}");
 
-			if (asset == null)
-				continue;
+			foreach (string guid in guids)
+			{
+				string path = AssetDatabase.GUIDToAssetPath(guid);
 
-			if (includeDeleted == IncludeDeleted.NotDeleted && asset.IsDeleted)
-				continue;
+				GameDataSO asset = AssetDatabase.LoadAssetAtPath(path, type) as GameDataSO;
 
-			if (includeDeleted == IncludeDeleted.Deleted && !asset.IsDeleted)
-				continue;
+				if (asset == null)
+					continue;
 
-			result.Add(asset);
+				if (includeDeleted == IncludeDeleted.NotDeleted && asset.IsDeleted)
+					continue;
+
+				if (includeDeleted == IncludeDeleted.Deleted && !asset.IsDeleted)
+					continue;
+
+				result.Add(asset);
+			}
+
+			result.Sort((a, b) => string.Compare(a.EnumName, b.EnumName, StringComparison.Ordinal));
+
+			return result;
 		}
-
-		result.Sort((a, b) => string.Compare(a.EnumName, b.EnumName, StringComparison.Ordinal));
-
-		return result;
 	}
 }

@@ -1,7 +1,10 @@
 using Gytis0.SOManager.Editor.CodeGeneration;
+using Gytis0.SOManager.Editor.Events;
 using Gytis0.SOManager.Editor.Helpers;
+using Gytis0.SOManager.Runtime;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,6 +35,7 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private void OnEnable()
 		{
+			EnsureAssembly();
 			LoadEditorPrefs();
 			ResourcesHelper.LoadIcons();
 			Cache();
@@ -110,6 +114,28 @@ namespace Gytis0.SOManager.Editor.Windows
 		{
 			foreach (Type type in cachedTypes)
 				EnumGenerator.Generate(type, cachedSettings.EnumsFilesPath);
+
+			AssetDatabase.Refresh();
+		}
+
+		private void EnsureAssembly()
+		{
+			string folder = Path.Combine(Application.dataPath, "SOManager");
+			Directory.CreateDirectory(folder);
+
+			string asmdefPath = Path.Combine(folder, "Gytis0.SOManager.Generated.asmdef");
+
+			string json = string.Format(
+			@"{{
+			  ""name"": ""{0}"",
+			  ""references"": [
+				""{1}""
+			  ]
+			}}",
+			"Gytis0.SOManager.Generated",
+			"Gytis0.SOManager.Runtime");
+
+			File.WriteAllText(asmdefPath, json);
 
 			AssetDatabase.Refresh();
 		}

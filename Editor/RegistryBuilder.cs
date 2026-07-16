@@ -1,3 +1,5 @@
+using Gytis0.SOManager.Editor.Enums;
+using Gytis0.SOManager.Editor.Extensions;
 using Gytis0.SOManager.Editor.Helpers;
 using Gytis0.SOManager.Runtime;
 using System.Collections.Generic;
@@ -29,7 +31,7 @@ namespace Gytis0.SOManager.Editor
 			var prop = so.FindProperty("entries");
 			prop.ClearArray();
 
-			for(int i = 0; i < all.Count; i++)
+			for (int i = 0; i < all.Count; i++)
 			{
 				prop.InsertArrayElementAtIndex(i);
 				prop.GetArrayElementAtIndex(i).objectReferenceValue = all[i];

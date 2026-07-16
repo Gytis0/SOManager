@@ -9,7 +9,7 @@ namespace Gytis0.SOManager.Editor.Windows
 		private bool isInit = false;
 		private Vector2 scroll;
 
-		private static  GUIStyle wrapStyle;
+		private static GUIStyle wrapStyle;
 
 		[MenuItem("Tools/SOManager/Help", priority = 12)]
 		public static void Open()

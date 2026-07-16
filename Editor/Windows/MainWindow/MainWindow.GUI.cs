@@ -1,4 +1,5 @@
 using Gytis0.SOManager.Editor.Helpers;
+using Gytis0.SOManager.Runtime;
 using System;
 using System.Linq;
 using UnityEditor;
@@ -56,7 +57,7 @@ namespace Gytis0.SOManager.Editor.Windows
 		private int activeResizeHandle = -1;
 		private float startWidth;
 		private Vector2 startMouse;
-		private const float sliderOffset = panelButtonSize / 2 - 9f;
+		private const float sliderOffset = (panelButtonSize / 2) - 9f;
 
 		/// <summary>
 		/// Draws all found types that inherit from <see cref="GameDataSO"/>.
@@ -248,7 +249,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			{
 				if (e.type == EventType.MouseDrag)
 				{
-					float availableWidth = position.width - HandleWidth * 2;
+					float availableWidth = position.width - (HandleWidth * 2);
 					float deltaRatio = (e.mousePosition.x - startMouse.x) / availableWidth;
 
 					if (id == 0)
@@ -358,8 +359,8 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private void CalculateWidths()
 		{
-			typeWidth = (position.width - HandleWidth * 2) * TypePanelRatio;
-			assetWidth = (position.width - HandleWidth * 2) * AssetPanelRatio;
+			typeWidth = (position.width - (HandleWidth * 2)) * TypePanelRatio;
+			assetWidth = (position.width - (HandleWidth * 2)) * AssetPanelRatio;
 			//float inspectorWidth = (position.width - HandleWidth * 2) * InspectorPanelRatio;
 		}
 

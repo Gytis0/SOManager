@@ -1,4 +1,7 @@
-public interface IGameDataSO
+namespace Gytis0.SOManager.Runtime
 {
-	bool IsValid();
+	public interface IGameDataSO
+	{
+		bool IsValid();
+	}
 }
