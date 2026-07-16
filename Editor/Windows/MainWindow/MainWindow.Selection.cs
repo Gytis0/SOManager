@@ -113,7 +113,10 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			UpdateAssetsToDisplay();
 
-			SelectAsset(assetsToDisplay[0], 0);
+			if (assetsToDisplay.Count > 0)
+				SelectAsset(assetsToDisplay[0], 0);
+			else
+				SelectAsset(null);
 		}
 
 		private void RestoreState()

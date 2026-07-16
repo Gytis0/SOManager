@@ -40,11 +40,11 @@ namespace Gytis0.SOManager.Editor.Windows
 		private const float WindowWidth_Default = 900f;
 		private const float WindowHeight_Default = 600f;
 
-		[SerializeField] private float TypePanelRatio;
-		[SerializeField] private float AssetPanelRatio;
-		[SerializeField] private float InspectorPanelRatio;
-		[SerializeField] private float WindowWidth;
-		[SerializeField] private float WindowHeight;
+		[SerializeField] private static float TypePanelRatio;
+		[SerializeField] private static float AssetPanelRatio;
+		[SerializeField] private static float InspectorPanelRatio;
+		[SerializeField] private static float WindowWidth;
+		[SerializeField] private static float WindowHeight;
 
 		private const string TypeRatio_Key = "Gytis0.SOManager.TypePanelRatio";
 		private const string AssetRatio_Key = "Gytis0.SOManager.AssetPanelRatio";
@@ -512,7 +512,6 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			createdAsset = CreateInstance(selectedType) as GameDataSO;
 			createdAsset.GenerateGuid();
-			createdAsset.SetIcon(ResourcesHelper.sprite_DefaultItemIcon);
 
 			isCreatingAsset = true;
 			inspector = UnityEditor.Editor.CreateEditor(createdAsset);
@@ -538,7 +537,7 @@ namespace Gytis0.SOManager.Editor.Windows
 		{
 			if (panelIndex == 0)
 			{
-				Build();
+				UpdateEnumsAndBuild();
 			}
 			else if (panelIndex == 1)
 			{

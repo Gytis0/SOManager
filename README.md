@@ -25,6 +25,7 @@ Currently supports 6.1+
 1. Selective item loading
 1. Snapshots
 1. "Where" filters
+1. Better "Object" view
 
 ## Credits
 https://flatuicolors.com/palette/defo

@@ -48,7 +48,7 @@ namespace Gytis0.SOManager.Editor.Helpers
 			icon_RestoreAsset = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/RestoreAsset.png") as Texture2D, "Restore Item");
 			icon_Save = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/Save.png") as Texture2D, "Save");
 			icon_Refresh = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/rotate-ccw.png") as Texture2D, "Refresh");
-			icon_Build = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/hammer.png") as Texture2D, "Build");
+			icon_Build = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/hammer.png") as Texture2D, "Update Enums and Build");
 			icon_SavePlus = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/save-plus.png") as Texture2D, "Save");
 			icon_Cancel = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/ban.png") as Texture2D, "Cancel");
 			icon_Grid = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/layout-grid.png") as Texture2D, "Grid View");

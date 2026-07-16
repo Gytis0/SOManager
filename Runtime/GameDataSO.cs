@@ -63,5 +63,20 @@ public abstract class GameDataSO : ScriptableObject, IGameDataSO
 		this.icon = icon;
 	}
 
+	internal string GetIdentifyingName()
+	{
+#if UNITY_6000_5_OR_NEWER
+		return !string.IsNullOrWhiteSpace(Name) ? Name :
+			!string.IsNullOrWhiteSpace(EnumName) ? EnumName :
+			!string.IsNullOrWhiteSpace(Guid) ? Guid :
+			GetEntityId().ToString();
+#elif UNITY_6000_1_OR_NEWER
+		return !string.IsNullOrWhiteSpace(Name) ? Name :
+			!string.IsNullOrWhiteSpace(EnumName) ? EnumName :
+			!string.IsNullOrWhiteSpace(Guid) ? Guid :
+			GetInstanceID().ToString();
+#endif
+	}
+
 	#endregion
 }

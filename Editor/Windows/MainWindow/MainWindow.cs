@@ -23,7 +23,11 @@ namespace Gytis0.SOManager.Editor.Windows
 		[MenuItem("Tools/SOManager/Manager", priority = 0)]
 		public static void Open()
 		{
-			GetWindow<MainWindow>("SO Manager");
+			LoadEditorPrefs();
+
+			var window = GetWindow<MainWindow>("SO Manager");
+			window.position = new Rect(window.position.x, window.position.y, WindowWidth, WindowHeight);
+			window.minSize = new Vector2(MinTypeWidth + MinAssetWidth + MinInspectorWidth, 300);
 		}
 
 		private void OnEnable()
@@ -35,8 +39,6 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			EditorEvents.OnAssetsChanged += EditorEvents_AssetsChanged;
 			AssetController.OnDeleteChanged += AssetController_OnDeleteChanged;
-
-			position = new Rect(position.x, position.y, WindowWidth, WindowHeight);
 		}
 
 		private void OnDisable()
@@ -45,7 +47,7 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			SavePendingChanges();
 
-			Build();
+			UpdateEnumsAndBuild();
 
 			EditorEvents.OnAssetsChanged -= EditorEvents_AssetsChanged;
 			AssetController.OnDeleteChanged -= AssetController_OnDeleteChanged;
@@ -62,7 +64,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			EditorPrefs.SetFloat(WindowHeight_Key, WindowHeight);
 		}
 
-		private void LoadEditorPrefs()
+		private static void LoadEditorPrefs()
 		{
 			TypePanelRatio = EditorPrefs.GetFloat(TypeRatio_Key, TypePanelRatio_Default);
 			AssetPanelRatio = EditorPrefs.GetFloat(AssetRatio_Key, AssetPanelRatio_Default);
@@ -95,7 +97,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			EditorGUILayout.EndHorizontal();
 		}
 
-		private void Build()
+		private void UpdateEnumsAndBuild()
 		{
 			GenerateEnums();
 			RegistryBuilder.Build(cachedSettings.ResourcesPath);

@@ -12,5 +12,6 @@ namespace Gytis0.SOManager.Editor.Helpers
 		public static Color Blue_Light = new Color(.2f, .59f, .85f);
 		public static Color Teal = new Color(.08f, .62f, .52f);
 		public static Color Orange = new Color(.82f, .32f, .0f);
+		public static Color Yellow = new Color(.95f, .61f, .07f);
 	}
 }

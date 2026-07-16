@@ -16,7 +16,7 @@ public static class ButtonHelper
 
 	public static bool DrawPanelButton(int buttonSize, GUIContent icon, GUIStyle style, string text = "")
 	{
-		if(width == 0f)
+		if (width == 0f)
 			Init(buttonSize);
 
 		Rect rect = GUILayoutUtility.GetRect(width, height, GUILayout.Width(width), GUILayout.Height(height));
@@ -127,13 +127,21 @@ public static class ButtonHelper
 
 	private static void ColorAsset(Rect rect, GameDataSO asset, bool selected)
 	{
-		if (asset.IsDeleted && selected)
-			EditorGUI.DrawRect(rect, ColorPalette.Purple);
-		else if (asset.IsDeleted)
-			EditorGUI.DrawRect(rect, ColorPalette.Red);
-		else if (selected)
-			EditorGUI.DrawRect(rect, ColorPalette.Blue_Light);
+		Color color = ColorPalette.UnityDefault;
 
+		if (asset.IsDeleted)
+		{
+			if (selected) color = ColorPalette.Purple;
+			else color = ColorPalette.Red;
+		}
+		else if (!asset.IsValid())
+		{
+			if (selected) color = ColorPalette.Orange;
+			else color = ColorPalette.Yellow;
+		}
+		else if (selected) color = ColorPalette.Blue_Light;
+
+		EditorGUI.DrawRect(rect, color);
 		GUI.Box(rect, GUIContent.none);
 	}
 

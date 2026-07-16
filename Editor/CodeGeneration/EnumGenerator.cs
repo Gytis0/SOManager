@@ -28,6 +28,8 @@ namespace Gytis0.SOManager.Editor.CodeGeneration
 
 			foreach (var asset in typeAssets.OrderBy(a => a.EnumName))
 			{
+				if (string.IsNullOrWhiteSpace(asset.Name))
+					throw new Exception(string.Format("Cannot generate enum, because '{0}' is invalid", asset.GetIdentifyingName()));
 				sb.AppendLine(string.Format("\t\t{0} = {1},", asset.EnumName, index));
 				asset.SetEnumId(index);
 				index++;

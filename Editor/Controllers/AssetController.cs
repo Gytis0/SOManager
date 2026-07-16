@@ -34,11 +34,11 @@ public static class AssetController
 		settings.DataPath.EnsureFolder();
 		folderPath.EnsureFolder();
 
-		string assetPath = string.Format("{0}/{1}.asset", folderPath, asset.Name);
+		string assetPath = string.Format("{0}/{1}.asset", folderPath, asset.EnumName);
 
 		if (AssetDatabase.LoadAssetAtPath<GameDataSO>(assetPath) != null)
 		{
-			Debug.LogError(string.Format("Asset '{0}' already exists.", asset.Name));
+			Debug.LogError(string.Format("Asset '{0}' already exists.", asset.EnumName));
 			return null;
 		}
 
@@ -46,7 +46,7 @@ public static class AssetController
 
 		EditorUtility.CopySerialized(asset, newAsset);
 
-		AssetDatabase.CreateAsset(asset, assetPath);
+		AssetDatabase.CreateAsset(newAsset, assetPath);
 		AssetDatabase.SaveAssets();
 
 		return newAsset;
@@ -65,7 +65,7 @@ public static class AssetController
 			exceptions.Add(new Exception("The asset Name cannot be empty."));
 
 		if (!asset.IsValid())
-			exceptions.Add(new Exception("The IsValid() method failed."));
+			Debug.LogWarningFormat("Asset {0} is not valid. Check the implemented IsValid()", asset.GetIdentifyingName(), asset);
 
 		if (exceptions.Count > 0)
 			throw new AggregateException(string.Format("Asset '{0}' is not valid.", asset.GetIdentifyingName()), exceptions);

@@ -58,8 +58,8 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private void DrawButtonHelp()
 		{
-			DrawHelpIcon(ResourcesHelper.icon_Build, "Builds registry, making the data ready to use in scripts.");
-			DrawHelpIcon(ResourcesHelper.icon_Refresh, "Refreshes the categories list.");
+			DrawHelpIcon(ResourcesHelper.icon_Build, "Updates project files (enums, registry), making the data ready to use in scripts.");
+			DrawHelpIcon(ResourcesHelper.icon_Refresh, "Updates SO Manager from the project files.");
 			DrawHelpIcon(ResourcesHelper.icon_ActiveItems_On, "Filters, whether to show active items or not.");
 			DrawHelpIcon(ResourcesHelper.icon_DeletedItems_On, "Filters, whether to show deleted items or not.");
 			DrawHelpIcon(ResourcesHelper.icon_List, "Change to list view.");
