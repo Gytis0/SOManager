@@ -1,26 +1,48 @@
-name: Check Package Version
+name: Release Unity Package
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version (example: 1.0.1)"
+        required: true
+
+permissions:
+  contents: write
 
 jobs:
-  check-version:
+  release:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Check package version
+      - name: Update package version
         shell: bash
         run: |
-          TAG_VERSION=${GITHUB_REF#refs/tags/}
-          PACKAGE_VERSION=$(grep '"version"' package.json | sed -E 's/.*"([0-9]+\.[0-9]+\.[0-9]+)".*/\1/')
+          VERSION=${{ github.event.inputs.version }}
+          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" package.json
 
-          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
-            echo "Mismatch!"
-            echo "Git tag: $TAG_VERSION"
-            echo "Package: $PACKAGE_VERSION"
-            exit 1
-          fi
+      - name: Commit version bump
+        shell: bash
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "Release $VERSION"
+
+      - name: Create tag
+        shell: bash
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          git tag $VERSION
+          git push origin main
+          git push origin $VERSION
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.version }}
