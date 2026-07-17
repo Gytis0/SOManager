@@ -106,12 +106,11 @@ namespace Gytis0.SOManager.Runtime
 	public abstract class GameDataSO<TEnum> : GameDataSO
 		where TEnum : Enum
 	{
-		public TEnum Enum
+		public TEnum Enum;
+
+		protected virtual void OnEnable()
 		{
-			get
-			{
-				return (TEnum)System.Enum.ToObject(typeof(TEnum), EnumId);
-			}
+			Enum = (TEnum)System.Enum.ToObject(typeof(TEnum), EnumId);
 		}
 
 		public bool Is(TEnum value)
