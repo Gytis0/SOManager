@@ -1,6 +1,9 @@
+using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 [assembly: InternalsVisibleTo("Gytis0.SOManager.Editor")]
+
+#pragma warning disable CS0809
 
 namespace Gytis0.SOManager.Runtime
 {
@@ -31,6 +34,23 @@ namespace Gytis0.SOManager.Runtime
 		public virtual bool IsValid()
 		{
 			return true;
+		}
+
+		public virtual bool Is(Enum value)
+		{
+			return EnumId == Convert.ToInt32(value);
+		}
+
+		public virtual bool Is(GameDataSO other)
+		{
+			return other != null && EnumId == other.EnumId && GetType() == other.GetType();
+		}
+
+		public override string ToString() { return Name; }
+
+		public bool Is<T>() where T : GameDataSO
+		{
+			return this is T;
 		}
 
 		#region Internal
@@ -81,5 +101,40 @@ namespace Gytis0.SOManager.Runtime
 		}
 
 		#endregion
+	}
+
+	public abstract class GameDataSO<TEnum> : GameDataSO
+		where TEnum : Enum
+	{
+		public TEnum Enum
+		{
+			get
+			{
+				return (TEnum)System.Enum.ToObject(typeof(TEnum), EnumId);
+			}
+		}
+
+		public bool Is(TEnum value)
+		{
+			return EnumId == Convert.ToInt32(value);
+		}
+
+		public bool Is(GameDataSO<TEnum> other)
+		{
+			return other != null && EnumId == other.EnumId;
+		}
+
+		[Obsolete("This overload is unsafe. Prefer using the generic one, as it provides compile-time safety.", false)]
+		public override bool Is(GameDataSO other)
+		{
+			return base.Is(other);
+		}
+
+		[Obsolete("This overload is unsafe. Prefer using the generic one, as it provides compile-time safety.", false)]
+		public override bool Is(Enum value)
+		{
+			if (typeof(TEnum) != value.GetType()) throw new ArgumentException(string.Format("Expected enum of type '{0}', but got '{1}'.", typeof(TEnum).Name, value.GetType().Name), nameof(value));
+			return base.Is(value);
+		}
 	}
 }

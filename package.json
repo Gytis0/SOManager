@@ -2,7 +2,7 @@
   "name": "com.gytis0.somanager",
   "version": "1.0.1",
   "displayName": "SO Manager",
-  "description": "Editor window for managing Scriptable Objects.",
+  "description": "SOManager is a manager used to create, view, modify and delete your Scriptable Objects (SOs). It can also be used in code to easily access said SOs.",
   "unity": "6000.1",
   "unityRelease": "3f1",
   "keywords": [
@@ -10,7 +10,8 @@
     "scriptableobjectsmanager",
     "so",
     "manager",
-    "gytismanager"
+    "gytismanager",
+    "gytis"
   ],
   "author": {
     "name": "Gytis Kupcinskas",

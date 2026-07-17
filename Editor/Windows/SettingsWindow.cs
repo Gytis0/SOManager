@@ -6,6 +6,7 @@ using Gytis0.SOManager.Editor.Settings;
 using Gytis0.SOManager.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,9 +14,9 @@ namespace Gytis0.SOManager.Editor.Windows
 {
 	public class GameDataSettingsWindow : EditorWindow
 	{
+		private const int buttonWidth = 38;
 		private SerializedObject serializedSettings;
 		private GameDataSettings settings;
-		private readonly int buttonWidth = 150;
 
 		[MenuItem("Tools/SOManager/Settings", priority = 11)]
 		public static void Open()
@@ -29,15 +30,23 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			if (settings != null)
 				serializedSettings = new SerializedObject(settings);
+
+			ResourcesHelper.LoadIcons();
 		}
 
 		private void OnGUI()
 		{
+			ResourcesHelper.EnsureInit();
+
+			EditorGUILayout.BeginVertical();
+
 			if (settings == null)
 			{
 				EditorGUILayout.HelpBox("GameDataSettings asset could not be loaded.", MessageType.Error);
 				return;
 			}
+
+			DrawHeader();
 
 			serializedSettings.Update();
 
@@ -49,7 +58,16 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			EditorGUILayout.Space();
 
-			if (GUILayout.Button("Save", GUILayout.Width(buttonWidth)))
+			serializedSettings.ApplyModifiedProperties();
+
+			EditorGUILayout.EndVertical();
+		}
+
+		private void DrawHeader()
+		{
+			EditorGUILayout.BeginHorizontal(ResourcesHelper.style_Header, GUILayout.Height(buttonWidth));
+
+			if (ButtonHelper.DrawPanelButton(buttonWidth, ResourcesHelper.icon_Save, ResourcesHelper.style_Panel_Button))
 			{
 				serializedSettings.ApplyModifiedProperties();
 
@@ -58,13 +76,16 @@ namespace Gytis0.SOManager.Editor.Windows
 				AssetDatabase.Refresh();
 			}
 
-			if (GUILayout.Button("Prune Soft Deleted", GUILayout.Width(buttonWidth)))
-				DeleteAllSoftDeletedAssets();
+			if (ButtonHelper.DrawPanelButton(buttonWidth, ResourcesHelper.icon_Prune, ResourcesHelper.style_Panel_Button))
+				StartSoftDeletion();
 
-			serializedSettings.ApplyModifiedProperties();
+			if (ButtonHelper.DrawPanelButton(buttonWidth, ResourcesHelper.icon_Migrate, ResourcesHelper.style_Panel_Button))
+				StartGenericMigration();
+
+			EditorGUILayout.EndHorizontal();
 		}
 
-		private void DeleteAllSoftDeletedAssets()
+		private void StartSoftDeletion()
 		{
 			List<GameDataSO> allAssets = new();
 
@@ -101,6 +122,29 @@ namespace Gytis0.SOManager.Editor.Windows
 			EditorEvents.RaiseAssetsChanged();
 
 			Debug.Log(string.Format("Deleted {0} soft deleted assets.", deletedCount));
+		}
+
+		private void StartGenericMigration()
+		{
+			if (!EditorUtility.DisplayDialog("Migrate to generics",
+				"PLEASE, BACKUP YOUR PROJECT BEFORE PROCEEDING.\n\nThis will search for all classes that inherit the non-generic GameDataSO and it will convert them into generics.\n\nThe generic version provides more methods to work with and adds more compile-time safer methods.",
+				"I've made a backup of my project. Proceed",
+				"Cancel"))
+				return;
+
+			var results = SettingsHelper.ConvertNonGenericGameDataTypesToGeneric();
+
+			StringBuilder sb = new();
+			sb.AppendLine(string.Format("The migration converted {0} files:", results.converted));
+			foreach(var fileName in results.convertedFiles)
+				sb.AppendLine(fileName);
+			
+			sb.AppendLine();
+			sb.AppendLine(string.Format("The migration skipped {0} files:", results.skipped));
+			foreach (var fileName in results.skippedFiles)
+				sb.AppendLine(fileName);
+
+			EditorUtility.DisplayDialog("Migrate to generics", sb.ToString(), "Ok");
 		}
 	}
 }

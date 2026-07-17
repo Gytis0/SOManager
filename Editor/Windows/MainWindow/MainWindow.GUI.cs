@@ -564,7 +564,7 @@ namespace Gytis0.SOManager.Editor.Windows
 		{
 			if (panelIndex == 0)
 			{
-				HelpWindow.Open();
+				Application.OpenURL("https://github.com/gytis0/SOManager/wiki");
 			}
 			else if (panelIndex == 1)
 			{

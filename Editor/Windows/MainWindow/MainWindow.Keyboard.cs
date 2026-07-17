@@ -23,10 +23,10 @@ namespace Gytis0.SOManager.Editor.Windows
 			if (IsFieldSelected() || e.type != EventType.KeyDown)
 				return;
 
-			isKeyboardActive = true;
-
 			if (e.keyCode.IsArrowKeys())
 			{
+				isKeyboardActive = true;
+
 				if (e.control)
 				{
 					if (e.keyCode == KeyCode.LeftArrow)
@@ -43,6 +43,8 @@ namespace Gytis0.SOManager.Editor.Windows
 			}
 			if (e.keyCode == KeyCode.Delete)
 			{
+				isKeyboardActive = true;
+
 				if (isCreatingAsset) ;
 				else if (selectedAssets.Count == 1)
 				{
@@ -68,6 +70,8 @@ namespace Gytis0.SOManager.Editor.Windows
 			}
 			if (e.keyCode == KeyCode.Home)
 			{
+				isKeyboardActive = true;
+
 				if (panelIndex == 0)
 					SelectType(cachedTypes[0]);
 				else if (panelIndex == 1)
@@ -79,6 +83,8 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			if (e.keyCode == KeyCode.End)
 			{
+				isKeyboardActive = true;
+
 				if (panelIndex == 0)
 					SelectType(cachedTypes[cachedTypes.Count - 1]);
 				else if (panelIndex == 1)
@@ -90,6 +96,8 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			if (e.keyCode.IsAlpha())
 			{
+				isKeyboardActive = true;
+
 				UseButtons(e);
 				e.Use();
 				return;
@@ -161,7 +169,7 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private bool IsFieldSelected()
 		{
-			return EditorGUIUtility.editingTextField && EditorGUIUtility.keyboardControl != 0;
+			return EditorGUIUtility.keyboardControl != 0;
 		}
 
 		private void HandlePanelIndex(int panelId)

@@ -34,6 +34,8 @@ namespace Gytis0.SOManager.Editor.Helpers
 		public static GUIContent icon_Grid;
 		public static GUIContent icon_List;
 		public static GUIContent icon_Help;
+		public static GUIContent icon_Prune;
+		public static GUIContent icon_Migrate;
 		public static Sprite sprite_DefaultItemIcon;
 
 		public static void LoadIcons()
@@ -53,12 +55,16 @@ namespace Gytis0.SOManager.Editor.Helpers
 			icon_Cancel = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/ban.png") as Texture2D, "Cancel");
 			icon_Grid = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/layout-grid.png") as Texture2D, "Grid View");
 			icon_List = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/list.png") as Texture2D, "List View");
-			icon_Help = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/circle-question-mark.png") as Texture2D, "Help");
+			icon_Help = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/circle-question-mark.png") as Texture2D, "Open a Wiki page");
+			icon_Prune = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/shredder.png") as Texture2D, "Prune");
+			icon_Migrate = new GUIContent(EditorGUIUtility.Load("Packages/com.gytis0.somanager/Editor/Icons/circle-fading-arrow-up.png") as Texture2D, "Migrate to Generics");
 			sprite_DefaultItemIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Packages/com.gytis0.somanager/Editor/Icons/box.png");
 		}
 
-		public static void Init()
+		public static void EnsureInit()
 		{
+			if (IsInit) return;
+
 			IsInit = true;
 			consolas = AssetDatabase.LoadAssetAtPath<Font>("Packages/com.gytis0.somanager/Fonts/Consolas-Regular.ttf");
 			style_Asset_ListLabel = new GUIStyle()

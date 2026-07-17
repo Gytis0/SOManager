@@ -39,6 +39,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			LoadEditorPrefs();
 			ResourcesHelper.LoadIcons();
 			Cache();
+			GenerateEnums();
 			RestoreState();
 
 			EditorEvents.OnAssetsChanged += EditorEvents_AssetsChanged;
@@ -79,8 +80,7 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private void OnGUI()
 		{
-			if (!ResourcesHelper.IsInit)
-				ResourcesHelper.Init();
+			ResourcesHelper.EnsureInit();
 
 			EditorGUILayout.BeginHorizontal();
 
