@@ -47,7 +47,7 @@ namespace Gytis0.SOManager.Runtime
 					_data[type] = map;
 				}
 
-				map[entry.EnumId] = entry;
+				map[entry.EnumId] = UnityEngine.Object.Instantiate(entry);
 			}
 
 			Initialized = true;
@@ -57,6 +57,9 @@ namespace Gytis0.SOManager.Runtime
 		/// <summary>
 		/// Gets an item of type <typeparamref name="T"/>.
 		/// </summary>
+		/// <remarks>
+		/// Gets the original asset from the SOManager. Do not modify the properties.
+		/// </remarks>
 		/// <typeparam name="T">Type of the item.</typeparam>
 		/// <param name="id">Id of the item.</param>
 		/// <returns>The item, if found. Otherwise, <see langword="null"/>.</returns>
@@ -69,6 +72,28 @@ namespace Gytis0.SOManager.Runtime
 
 			if (_data.TryGetValue(typeof(T), out var map) && map.TryGetValue(Convert.ToInt32(id), out var value))
 				return (T)value;
+
+			return null;
+		}
+
+		/// <summary>
+		/// Gets an item of type <typeparamref name="T"/>.
+		/// </summary>
+		/// <remarks>
+		/// Gets the asset copy from the SOManager. You may modify the properties.
+		/// </remarks>
+		/// <typeparam name="T">Type of the item.</typeparam>
+		/// <param name="id">Id of the item.</param>
+		/// <returns>The item, if found. Otherwise, <see langword="null"/>.</returns>
+		/// <exception cref="Exception"></exception>
+		public static T GetCopy<T>(Enum id)
+			where T : GameDataSO
+		{
+			if (!Initialized)
+				throw new Exception("GameData not initialized. Wait for it to initialize first.");
+
+			if (_data.TryGetValue(typeof(T), out var map) && map.TryGetValue(Convert.ToInt32(id), out var value))
+				return UnityEngine.Object.Instantiate((T)value);
 
 			return null;
 		}

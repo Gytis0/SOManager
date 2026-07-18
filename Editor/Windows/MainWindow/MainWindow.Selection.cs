@@ -125,14 +125,8 @@ namespace Gytis0.SOManager.Editor.Windows
 			searchField_Types = new();
 			searchField_Asset = new();
 
-			var tempAssetGuid = selectedAssetGuid;
 			SelectType(cachedTypes.FirstOrDefault(x => x.FullName == selectedTypeName));
-
-			if (!string.IsNullOrEmpty(tempAssetGuid))
-			{
-				string path = AssetDatabase.GUIDToAssetPath(tempAssetGuid);
-				SelectAsset(AssetDatabase.LoadAssetAtPath<GameDataSO>(path));
-			}
+			SelectAsset(null);
 		}
 
 		private void CreateInspectorEditor()

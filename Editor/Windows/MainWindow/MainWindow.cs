@@ -95,7 +95,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			DrawAssetsPanel();
 
 			DrawResizeHandle(1);
-
+			
 			DrawInspectorPanel();
 
 			EditorGUILayout.EndHorizontal();
