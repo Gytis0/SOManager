@@ -32,7 +32,7 @@ namespace Gytis0.SOManager.Editor.CodeGeneration
 			{
 				if (string.IsNullOrWhiteSpace(asset.Name))
 					throw new Exception(string.Format("Cannot generate enum, because '{0}' is invalid", asset.GetIdentifyingName()));
-				sb.AppendLine(string.Format("\t\t{0} = {1},", asset.EnumName, index));
+				sb.AppendLine(string.Format("\t\t{0} = {1},", asset.EnumName.ToPascalCase(), index));
 				asset.SetEnumId(index);
 				index++;
 			}

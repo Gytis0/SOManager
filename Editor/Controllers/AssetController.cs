@@ -72,6 +72,9 @@ namespace Gytis0.SOManager.Editor
 
 			if (exceptions.Count > 0)
 				throw new AggregateException(string.Format("Asset '{0}' is not valid.", asset.GetIdentifyingName()), exceptions);
+
+			asset.SetEnumName(asset.EnumName.Trim());
+			asset.SetName(asset.Name.Trim());
 		}
 
 		public static bool IsAssetUnique(GameDataSO asset, List<GameDataSO> assetList, out string existingName)

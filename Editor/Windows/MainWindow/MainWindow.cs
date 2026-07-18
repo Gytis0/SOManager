@@ -120,10 +120,10 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private void EnsureAssembly()
 		{
-			string folder = Path.Combine(Application.dataPath, "SOManager");
+			string folder = Path.Combine(Application.dataPath, "SOManager/Enums");
 			Directory.CreateDirectory(folder);
 
-			string asmdefPath = Path.Combine(folder, "Gytis0.SOManager.Generated.asmdef");
+			string asmdefPath = Path.Combine(folder, "Gytis0.SOManager.Enums.asmdef");
 
 			string json = string.Format(
 			@"{{
@@ -132,7 +132,7 @@ namespace Gytis0.SOManager.Editor.Windows
 				""{1}""
 			  ]
 			}}",
-			"Gytis0.SOManager.Generated",
+			"Gytis0.SOManager.Enums",
 			"Gytis0.SOManager.Runtime");
 
 			File.WriteAllText(asmdefPath, json);
