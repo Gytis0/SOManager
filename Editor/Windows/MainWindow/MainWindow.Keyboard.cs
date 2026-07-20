@@ -20,6 +20,29 @@ namespace Gytis0.SOManager.Editor.Windows
 				return;
 			}
 
+			// Exception for panel swapping and asset changing
+			if (e.type == EventType.KeyDown && e.keyCode.IsArrowKeys() && e.alt)
+			{
+				isKeyboardActive = true;
+				if (e.keyCode == KeyCode.LeftArrow)
+					SetPanelIndex(panelIndex - 1);
+				else if (e.keyCode == KeyCode.RightArrow)
+					SetPanelIndex(panelIndex + 1);
+				else if(assetsToDisplay.Count > 0)
+				{
+					int currentIndex = selectedAssetIndex_Last;
+					int delta = e.keyCode == KeyCode.DownArrow ? 1 :
+								e.keyCode == KeyCode.UpArrow ? -1 : 0;
+
+					int newIndex = Mathf.Clamp(currentIndex + delta, 0, assetsToDisplay.Count - 1);
+
+					
+					SelectAsset(assetsToDisplay[newIndex], newIndex);
+				}
+				e.Use();
+				return;
+			}
+
 			if (IsFieldSelected() || e.type != EventType.KeyDown)
 				return;
 
@@ -27,17 +50,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			{
 				isKeyboardActive = true;
 
-				if (e.control)
-				{
-					if (e.keyCode == KeyCode.LeftArrow)
-						SetPanelIndex(panelIndex - 1);
-					else if (e.keyCode == KeyCode.RightArrow)
-						SetPanelIndex(panelIndex + 1);
-				}
-				else
-				{
-					Navigate(e);
-				}
+				Navigate(e);
 				e.Use();
 				return;
 			}

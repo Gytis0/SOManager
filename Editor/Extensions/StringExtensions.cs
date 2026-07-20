@@ -14,7 +14,7 @@ namespace Gytis0.SOManager.Editor.Extensions
 
 			StringBuilder sb = new();
 
-			string[] parts = value.Split(new[] { ' ', '_', '-' }, StringSplitOptions.RemoveEmptyEntries);
+			string[] parts = value.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 			foreach (string part in parts)
 			{
