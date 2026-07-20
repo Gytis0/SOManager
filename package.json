@@ -1,6 +1,6 @@
 {
   "name": "com.gytis0.somanager",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "displayName": "SO Manager",
   "description": "SOManager is a manager used to create, view, modify and delete your Scriptable Objects (SOs). It can also be used in code to easily access said SOs.",
   "unity": "6000.1",
@@ -18,5 +18,6 @@
     "url": "https://github.com/Gytis0/SOManager",
     "email": "gytiskupcinskas0@gmail.com"
   },
-  "documentationUrl": "https://github.com/Gytis0/SOManager/wiki"
+  "documentationUrl": "https://github.com/Gytis0/SOManager/wiki",
+  "changelogUrl": "https://github.com/Gytis0/SOManager/releases/latest"
 }
