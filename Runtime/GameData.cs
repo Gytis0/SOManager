@@ -48,7 +48,8 @@ namespace Gytis0.SOManager.Runtime
 					_data[type] = map;
 				}
 
-				map[entry.EnumId] = UnityEngine.Object.Instantiate(entry);
+				if(!map.TryAdd(entry.EnumId, UnityEngine.Object.Instantiate(entry)))
+					Debug.LogWarning(string.Format("[GameData] Duplicate ids detected '{0}'. ", entry.EnumId));
 			}
 
 			Initialized = true;
