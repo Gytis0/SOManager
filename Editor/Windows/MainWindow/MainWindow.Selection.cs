@@ -64,19 +64,7 @@ namespace Gytis0.SOManager.Editor.Windows
 
 			if (e != null && e.shift && lastSelectedAsset != null)
 			{
-				int from = selectedAssetIndex_Last;
-				int to = index;
-
-				if (from > to)
-					(from, to) = (to, from);
-
-				selectedAssets.Clear();
-
-				for (int i = from; i <= to; i++)
-					selectedAssets.Add(assetsToDisplay[i]);
-
-				selectedAssetIndex_Top = from;
-				selectedAssetIndex_Bottom = to;
+				SelectMultiple_Shift(index);
 			}
 			else if (e != null && e.control)
 			{
@@ -94,6 +82,23 @@ namespace Gytis0.SOManager.Editor.Windows
 			}
 
 			isAutoScrollNeeded_Asset = true;
+		}
+
+		private void SelectMultiple_Shift(int index)
+		{
+			int from = selectedAssetIndex_Last;
+			int to = index;
+
+			if (from > to)
+				(from, to) = (to, from);
+
+			selectedAssets.Clear();
+
+			for (int i = from; i <= to; i++)
+				selectedAssets.Add(assetsToDisplay[i]);
+
+			selectedAssetIndex_Top = from;
+			selectedAssetIndex_Bottom = to;
 		}
 
 		private void SelectType(Type type)

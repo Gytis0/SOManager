@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 
 namespace Gytis0.SOManager.Editor.CodeGeneration
 {
@@ -34,6 +35,7 @@ namespace Gytis0.SOManager.Editor.CodeGeneration
 					throw new Exception(string.Format("Cannot generate enum, because '{0}' is invalid", asset.GetIdentifyingName()));
 				sb.AppendLine(string.Format("\t\t{0} = {1},", asset.EnumName.ToPascalCase(), index));
 				asset.SetEnumId(index);
+				EditorUtility.SetDirty(asset);
 				index++;
 			}
 
@@ -44,6 +46,8 @@ namespace Gytis0.SOManager.Editor.CodeGeneration
 				Directory.CreateDirectory(folder);
 
 			File.WriteAllText(string.Format("{0}/{1}s.cs", folder, enumName), sb.ToString());
+
+			AssetDatabase.SaveAssets();
 		}
 	}
 }

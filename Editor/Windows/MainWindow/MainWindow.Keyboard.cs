@@ -20,15 +20,18 @@ namespace Gytis0.SOManager.Editor.Windows
 				return;
 			}
 
+			// Ignore non-key events
+			if (e.type != EventType.KeyDown) return;
+
 			// Exception for panel swapping and asset changing
-			if (e.type == EventType.KeyDown && e.keyCode.IsArrowKeys() && e.alt)
+			if (e.keyCode.IsArrowKeys() && e.alt)
 			{
 				isKeyboardActive = true;
 				if (e.keyCode == KeyCode.LeftArrow)
 					SetPanelIndex(panelIndex - 1);
 				else if (e.keyCode == KeyCode.RightArrow)
 					SetPanelIndex(panelIndex + 1);
-				else if(assetsToDisplay.Count > 0)
+				else if (assetsToDisplay.Count > 0)
 				{
 					int currentIndex = selectedAssetIndex_Last;
 					int delta = e.keyCode == KeyCode.DownArrow ? 1 :
@@ -36,16 +39,24 @@ namespace Gytis0.SOManager.Editor.Windows
 
 					int newIndex = Mathf.Clamp(currentIndex + delta, 0, assetsToDisplay.Count - 1);
 
-					
+
 					SelectAsset(assetsToDisplay[newIndex], newIndex);
 				}
 				e.Use();
 				return;
 			}
 
-			if (IsFieldSelected() || e.type != EventType.KeyDown)
+			if (IsFieldSelected())
 				return;
 
+			if (e.control && e.keyCode == KeyCode.A && panelIndex == 1 && assetsToDisplay.Count > 1)
+			{
+				SelectAsset(assetsToDisplay[0], 0);
+				SelectMultiple_Shift(assetsToDisplay.Count - 1);
+				Repaint();
+				e.Use();
+				return;
+			}
 			if (e.keyCode.IsArrowKeys())
 			{
 				isKeyboardActive = true;
@@ -85,10 +96,10 @@ namespace Gytis0.SOManager.Editor.Windows
 			{
 				isKeyboardActive = true;
 
-				if (panelIndex == 0)
+				if (panelIndex == 0 && cachedTypes.Count > 0)
 					SelectType(cachedTypes[0]);
-				else if (panelIndex == 1)
-					SelectAsset(cachedAssets[selectedType][0], 0);
+				else if (panelIndex == 1 && assetsToDisplay.Count > 0)
+					SelectAsset(assetsToDisplay[0], 0);
 
 				e.Use();
 				return;
@@ -98,10 +109,10 @@ namespace Gytis0.SOManager.Editor.Windows
 			{
 				isKeyboardActive = true;
 
-				if (panelIndex == 0)
+				if (panelIndex == 0 && cachedTypes.Count > 0)
 					SelectType(cachedTypes[cachedTypes.Count - 1]);
-				else if (panelIndex == 1)
-					SelectAsset(cachedAssets[selectedType][cachedAssets[selectedType].Count - 1], cachedAssets[selectedType].Count - 1);
+				else if (panelIndex == 1 && assetsToDisplay.Count > 0)
+					SelectAsset(assetsToDisplay[assetsToDisplay.Count - 1], assetsToDisplay.Count - 1);
 
 				e.Use();
 				return;
@@ -121,9 +132,9 @@ namespace Gytis0.SOManager.Editor.Windows
 
 		private void Navigate(Event e)
 		{
-			if (panelIndex == 0)
+			if (panelIndex == 0 && cachedTypes.Count > 1)
 				Navigate_Type(e);
-			else if (panelIndex == 1)
+			else if (panelIndex == 1 && assetsToDisplay.Count > 1)
 				Navigate_Asset(e);
 		}
 
