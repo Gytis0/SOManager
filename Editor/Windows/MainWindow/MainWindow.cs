@@ -26,11 +26,18 @@ namespace Gytis0.SOManager.Editor.Windows
 		[MenuItem("Tools/SOManager/Manager", priority = 0)]
 		public static void Open()
 		{
-			LoadEditorPrefs();
+			bool alreadyOpen = Resources.FindObjectsOfTypeAll<MainWindow>().Length > 0;
+
+			if (!alreadyOpen)
+				LoadEditorPrefs();
 
 			var window = GetWindow<MainWindow>("SO Manager");
-			window.position = new Rect(window.position.x, window.position.y, WindowWidth, WindowHeight);
-			window.minSize = new Vector2(MinTypeWidth + MinAssetWidth + MinInspectorWidth, 300);
+
+			if (!alreadyOpen)
+			{
+				window.position = new Rect(window.position.x, window.position.y, WindowWidth, WindowHeight);
+				window.minSize = new Vector2(MinTypeWidth + MinAssetWidth + MinInspectorWidth, 300);
+			}
 		}
 
 		private void OnEnable()
@@ -74,7 +81,7 @@ namespace Gytis0.SOManager.Editor.Windows
 			TypePanelRatio = EditorPrefs.GetFloat(TypeRatio_Key, TypePanelRatio_Default);
 			AssetPanelRatio = EditorPrefs.GetFloat(AssetRatio_Key, AssetPanelRatio_Default);
 			InspectorPanelRatio = EditorPrefs.GetFloat(InspectorRatio_Key, InspectorPanelRatio_Default);
-			WindowHeight = EditorPrefs.GetFloat(WindowWidth_Key, WindowWidth_Default);
+			WindowWidth = EditorPrefs.GetFloat(WindowWidth_Key, WindowWidth_Default);
 			WindowHeight = EditorPrefs.GetFloat(WindowHeight_Key, WindowHeight_Default);
 		}
 
