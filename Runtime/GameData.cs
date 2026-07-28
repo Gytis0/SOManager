@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Gytis0.SOManager.Runtime
@@ -15,8 +14,7 @@ namespace Gytis0.SOManager.Runtime
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		private static void InitializeOnLoad()
 		{
-			if (Initialized)
-				return;
+			Initialized = false;
 
 			Registry registry = Resources.Load<Registry>("SOManager/Registry");
 
@@ -31,8 +29,6 @@ namespace Gytis0.SOManager.Runtime
 
 		private static void Initialize(Registry registry)
 		{
-			if (Initialized) return;
-
 			_data.Clear();
 
 			foreach (var entry in registry.Entries)
